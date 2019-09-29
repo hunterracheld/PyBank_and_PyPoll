@@ -14,8 +14,6 @@ def print_totals(election_data, text_file):
 	#create list of votes based on 3rd item in every row
 	votes = [row[2] for row in election_data]
 	totalvotes = int(len(votes))
-	
-	#print total votes to make sure code is working
 
 	#create list of all names
 	allnames = np.array(votes)
@@ -25,22 +23,17 @@ def print_totals(election_data, text_file):
 
 	#create dictionary for candidates [key] and total votes for each [value]
 	candidate_votes = {}
-	
-	#print candidates list to make sure code is working
 
-	#loop through candidates, set each value to 0
+	#loop through candidates, set total votes for each to 0
 	for cand in candidates:
 		candidate_votes[cand] = 0
 	
-	#print candidate_votes to make sure code is working
-	
-	#loop through candidates again, this time setting value to +1 each time name occurs
-	for votegetter in votes:
-		candidate_votes[votegetter] = candidate_votes[votegetter] + 1
-	
-	#print candidate_votes to make sure code is working
+	#loop through candidates again, this time adding 1 vote each time name occurs
+	for vote in votes:
+		candidate_votes[vote] = candidate_votes[vote] + 1
 
-	#The winner of the election based on popular vote.
+	#Determine the winner of the election based on popular vote.
+	#Set variable to hold winner votes
 	winner_votes=0
 	winner_name = ""
 	for key , value in candidate_votes.items():
@@ -51,7 +44,7 @@ def print_totals(election_data, text_file):
 	# create new dictionary for percentage totals 
 	candidate_ps = {}
 
-	# loop through unique values in candidate list to set keys, value equals percentage of votes each candidate won
+	# loop through unique values in candidate list to set keys, value equals percentage of votes each candidate won, formatted to 3 spaces past decimal
 	for cand in candidates:
 		candidate_ps[cand] = '{:.3f}'.format((candidate_votes[cand]/totalvotes)*100)
 	
